@@ -157,6 +157,13 @@
   .case{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
   .case img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s ease}
   .case:hover img{transform:scale(1.04)}
+  .case-ph{
+    aspect-ratio:4/3;display:grid;place-content:center;gap:10px;text-align:center;padding:24px;
+    background:repeating-linear-gradient(45deg,#151517 0 14px,#121214 14px 28px);
+    border-bottom:1px solid var(--line);
+  }
+  .case-ph span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+  .case-ph b{font-size:clamp(15px,1.9vw,20px);font-weight:800;text-transform:uppercase;max-width:22ch}
   .case-body{padding:22px 24px 26px}
   .case-body h3{font-size:clamp(18px,2.3vw,26px);text-transform:uppercase;margin-bottom:10px}
   .case-body p{color:var(--muted);font-size:14px}
@@ -302,10 +309,10 @@
       </div>
       <div class="hero-media rv">
         <picture>
-          <source srcset="assets/cnc_photo_cover.webp" type="image/webp">
-          <img src="assets/cnc_photo_cover.jpg" alt="Производство StandART: изготовление конструкций на собственном участке" width="1024" height="1024" fetchpriority="high">
+          <source srcset="assets/cnc_table_cover.webp" type="image/webp">
+          <img src="assets/cnc_table_cover.jpg" alt="Фрезерно-гравировальный станок ЧПУ на производственном участке" width="1024" height="1024" fetchpriority="high">
         </picture>
-        <span class="hero-tag">Свои цеха</span>
+        <span class="hero-tag">Своё производство</span>
       </div>
     </div>
   </section>
@@ -360,8 +367,8 @@
   <section class="prod" id="production">
     <div class="wrap prod-grid">
       <div class="rv"><picture>
-          <source srcset="assets/cnc_table_cover.webp" type="image/webp">
-          <img src="assets/cnc_table_cover.jpg" alt="ЧПУ-фрезеровка на производстве StandART" loading="lazy" width="1024" height="1024">
+          <source srcset="assets/cnc_photo_cover2.webp" type="image/webp">
+          <img src="assets/cnc_photo_cover2.jpg" alt="Фреза ЧПУ в работе: раскрой листового материала" loading="lazy" width="1024" height="1024">
         </picture></div>
       <div>
         <div class="eyebrow">Производство</div>
@@ -389,14 +396,13 @@
           <div class="eyebrow">Кейсы</div>
           <h2>Уже смонтировано</h2>
         </div>
-        <p>Фотографии — с наших объектов. Ничего не рисовали в графическом редакторе: это готовые конструкции.</p>
+        <p>Проекты показываем на замерах и в переписке — пришлём фото и смету по вашей площадке. Два примера ниже: фото с объектов подставим.</p>
       </div>
       <div class="cases-grid">
         <article class="case rv">
-          <picture>
-            <source srcset="assets/test_edit.webp" type="image/webp">
-            <img src="assets/test_edit.jpg" alt="Кейс: проект для ЦСКА Арена, шоу «Дискотека 90-х»" loading="lazy" width="1024" height="1024">
-          </picture>
+          <div class="case-ph" role="img" aria-label="Место под фото с объекта: ЦСКА Арена, шоу «Дискотека 90-х»">
+            <span>Фото с объекта</span><b>ЦСКА Арена · Дискотека 90-х</b>
+          </div>
           <div class="case-body">
             <h3>ЦСКА Арена × Дискотека 90-х</h3>
             <p>Оформление сцены и зон мероприятия: объёмные элементы, брендированные поверхности, монтаж на действующей площадке в сжатые сроки.</p>
@@ -404,10 +410,9 @@
           </div>
         </article>
         <article class="case rv">
-          <picture>
-            <source srcset="assets/cnc_photo_cover2.webp" type="image/webp">
-            <img src="assets/cnc_photo_cover2.jpg" alt="Кейс: инсталляция «14 гигантских яблок», Коломенское" loading="lazy" width="1024" height="1024">
-          </picture>
+          <div class="case-ph" role="img" aria-label="Место под фото с объекта: инсталляция «14 гигантских яблок», Коломенское">
+            <span>Фото с объекта</span><b>14 гигантских яблок · Коломенское</b>
+          </div>
           <div class="case-body">
             <h3>«14 гигантских яблок», Коломенское</h3>
             <p>Серия крупногабаритных арт-объектов для городской площадки: каркас, формовка, покраска под открытым небом, установка и закрепление.</p>
