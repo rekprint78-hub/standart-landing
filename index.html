@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StandART — стенды, декорации и арт-объекты. Собственное производство в Москве</title>
+<meta name="description" content="StandART — рекламно-производственная компания полного цикла: выставочные стенды, декорации, фотозоны, бренд-зоны, арт-объекты и нестандартные конструкции. Печать, ЧПУ, сварка, 3D. Москва и МО.">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="StandART — производим стенды, декорации и арт-объекты">
+<meta property="og:description" content="Собственное производство в Москве и МО. Проектирование · изготовление · монтаж.">
+<meta property="og:image" content="assets/cnc_photo_cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-2:#101012;
+    --panel:#131316;
+    --line:rgba(255,255,255,.10);
+    --line-strong:rgba(255,255,255,.22);
+    --ink:#ffffff;
+    --ink-soft:#c8c8ce;
+    --muted:#8b8b94;
+    --red:#e1151b;
+    --red-soft:#ff3b40;
+    --radius:14px;
+    --pad:clamp(18px,4.2vw,64px);
+    --maxw:1240px;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+    font-size:16px;line-height:1.55;font-weight:400;overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{margin:0;line-height:1.03;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+  p{margin:0;text-wrap:pretty}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+  .eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+  .eyebrow b{color:var(--red)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:54px;padding:0 28px;border-radius:999px;border:1px solid transparent;
+    font-weight:700;font-size:15px;letter-spacing:.01em;cursor:pointer;
+    transition:transform .18s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    background:var(--red);color:#fff;
+  }
+  .btn:hover{background:var(--red-soft);transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .btn--ghost{background:transparent;border-color:var(--line-strong);color:#fff}
+  .btn--ghost:hover{background:#fff;color:#000;border-color:#fff}
+  .btn--block{width:100%}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:60;background:rgba(10,10,11,.82);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  }
+  .hdr{display:flex;align-items:center;gap:clamp(14px,3vw,44px);height:74px}
+  .logo{font-weight:900;font-size:22px;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap}
+  .logo span{color:var(--red)}
+  .nav{display:flex;gap:26px;margin-left:auto;font-size:14px;font-weight:600;color:var(--ink-soft)}
+  .nav a{position:relative;padding:6px 0}
+  .nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--red);transition:width .22s ease}
+  .nav a:hover{color:#fff}
+  .nav a:hover::after{width:100%}
+  .hdr-actions{display:flex;align-items:center;gap:14px;margin-left:auto}
+  .hdr-phone{font-weight:700;font-size:15px;white-space:nowrap}
+  .hdr-phone:hover{color:var(--red)}
+  .hdr .btn{min-height:44px;padding:0 22px;font-size:14px}
+  .burger{
+    display:none;width:46px;height:46px;border:1px solid var(--line-strong);border-radius:12px;
+    background:transparent;cursor:pointer;padding:0;place-items:center;
+  }
+  .burger i{display:block;width:18px;height:2px;background:#fff;position:relative;transition:.2s}
+  .burger i::before,.burger i::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff;transition:.2s}
+  .burger i::before{top:-6px}.burger i::after{top:6px}
+  body.nav-open .burger i{background:transparent}
+  body.nav-open .burger i::before{top:0;transform:rotate(45deg)}
+  body.nav-open .burger i::after{top:0;transform:rotate(-45deg)}
+  .mobile-nav{display:none}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:clamp(44px,7vw,96px) 0 clamp(38px,6vw,72px);overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 520px at 78% 8%, rgba(225,21,27,.16), transparent 62%),
+      linear-gradient(180deg,#0a0a0b 0%,#0a0a0b 60%,rgba(10,10,11,.4) 100%);
+    pointer-events:none;
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,58px);align-items:center}
+  .hero h1{font-size:clamp(34px,6.6vw,74px);font-weight:900;text-transform:uppercase}
+  .hero h1 em{font-style:normal;color:var(--red)}
+  .hero p.lead{margin-top:24px;font-size:clamp(15px,1.6vw,19px);color:var(--ink-soft);max-width:52ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .facts{display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:42px;padding-top:26px;border-top:1px solid var(--line)}
+  .fact{display:flex;flex-direction:column;gap:4px}
+  .fact b{font-size:15px;font-weight:700}
+  .fact span{font-size:12.5px;color:var(--muted)}
+  .hero-media{position:relative}
+  .hero-media img{
+    width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);
+    filter:grayscale(.15) contrast(1.04);
+  }
+  .hero-media::after{
+    content:"";position:absolute;inset:auto -14px -14px auto;width:38%;height:38%;
+    border-right:3px solid var(--red);border-bottom:3px solid var(--red);border-radius:0 0 var(--radius) 0;
+  }
+  .hero-tag{
+    position:absolute;left:-14px;bottom:26px;background:var(--red);color:#fff;
+    font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    padding:10px 16px;border-radius:8px;
+  }
+
+  /* ---------- services ---------- */
+  section{padding:clamp(56px,8vw,110px) 0}
+  .sec-head{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:end;margin-bottom:clamp(28px,4vw,56px)}
+  .sec-head h2{font-size:clamp(26px,4.4vw,52px);text-transform:uppercase}
+  .sec-head p{color:var(--muted);font-size:15px;max-width:44ch}
+  .svc{border-top:1px solid var(--line)}
+  .svc-row{
+    display:grid;grid-template-columns:78px 1.05fr 1.4fr;gap:clamp(12px,3vw,40px);
+    align-items:baseline;padding:26px 8px;border-bottom:1px solid var(--line);
+    transition:background .22s ease, padding-left .22s ease;
+  }
+  .svc-row:hover{background:var(--bg-2);padding-left:20px}
+  .svc-row .num{font-weight:800;font-size:13px;color:var(--red);letter-spacing:.08em}
+  .svc-row h3{font-size:clamp(19px,2.5vw,30px);text-transform:uppercase;font-weight:800}
+  .svc-row p{color:var(--muted);font-size:14.5px}
+  .svc-row .tag{font-size:12px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:4px 12px;display:inline-block;margin-top:8px}
+
+  /* ---------- production ---------- */
+  .prod{background:var(--bg-2);border-block:1px solid var(--line)}
+  .prod-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,4vw,64px);align-items:center}
+  .prod-grid img{border-radius:var(--radius);aspect-ratio:3/2;object-fit:cover;width:100%}
+  .tech{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .tech span{
+    border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;
+    font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  }
+  .tech span:hover{border-color:var(--red);color:#fff}
+  .prod h2{font-size:clamp(24px,4vw,46px);text-transform:uppercase;margin-bottom:20px}
+  .prod p{color:var(--ink-soft);font-size:15.5px;max-width:52ch}
+
+  /* ---------- cases ---------- */
+  .cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,32px)}
+  .case{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+  .case img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s ease}
+  .case:hover img{transform:scale(1.04)}
+  .case-body{padding:22px 24px 26px}
+  .case-body h3{font-size:clamp(18px,2.3vw,26px);text-transform:uppercase;margin-bottom:10px}
+  .case-body p{color:var(--muted);font-size:14px}
+  .case-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .case-meta span{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+  /* ---------- process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,30px)}
+  .step{border-top:2px solid var(--red);padding-top:20px}
+  .step b{display:block;font-size:12px;letter-spacing:.16em;color:var(--muted);margin-bottom:12px}
+  .step h3{font-size:19px;text-transform:uppercase;margin-bottom:10px}
+  .step p{font-size:14px;color:var(--muted)}
+
+  /* ---------- lead form ---------- */
+  .lead{background:linear-gradient(180deg,var(--bg) 0%,#14090a 55%,var(--bg) 100%);border-top:1px solid var(--line)}
+  .lead-grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(26px,4vw,64px);align-items:start}
+  .lead h2{font-size:clamp(26px,4.4vw,50px);text-transform:uppercase;margin-bottom:18px}
+  .lead .lead-sub{color:var(--ink-soft);font-size:15.5px;max-width:46ch}
+  .lead-list{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:12px}
+  .lead-list li{display:flex;gap:12px;font-size:14.5px;color:var(--ink-soft)}
+  .lead-list li b{color:var(--red);font-weight:800}
+  form{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,3vw,32px)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .field input,.field textarea{
+    width:100%;background:#0c0c0e;border:1px solid var(--line-strong);border-radius:11px;
+    color:#fff;font-family:inherit;font-size:16px;padding:15px 16px;min-height:52px;
+  }
+  .field textarea{min-height:104px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+  .field.bad input,.field.bad textarea{border-color:var(--red);background:#160c0d}
+  .err{display:none;color:var(--red-soft);font-size:12.5px;margin-top:7px}
+  .field.bad .err{display:block}
+  .consent{display:flex;gap:11px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin:4px 0 20px}
+  .consent input{width:20px;height:20px;min-height:20px;accent-color:var(--red);margin-top:1px;flex:0 0 auto}
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:14px}
+  .form-ok{display:none;background:#0f1a12;border:1px solid #1f5d33;border-radius:12px;padding:18px;font-size:14.5px;color:#bfe8c8;margin-bottom:16px}
+  form.sent .form-ok{display:block}
+
+  /* ---------- contacts / footer ---------- */
+  .contacts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:clamp(16px,2.6vw,30px)}
+  .contact-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:var(--panel)}
+  .contact-card b{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .contact-card a,.contact-card p{font-size:clamp(16px,1.9vw,19px);font-weight:700}
+  .contact-card a:hover{color:var(--red)}
+  footer{border-top:1px solid var(--line);padding:34px 0 44px;background:var(--bg-2)}
+  .foot{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}
+  .foot a:hover{color:#fff}
+
+  /* ---------- mobile cta bar ---------- */
+  .bars{
+    position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:10px;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(10,10,11,.94);
+    backdrop-filter:blur(12px);border-top:1px solid var(--line);
+  }
+  .bars .btn{flex:1;min-height:48px;padding:0 14px;font-size:14px}
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rv{opacity:1;transform:none;transition:none}
+    .case img{transition:none}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1024px){
+    .nav{display:none}
+    .burger{display:grid}
+    .hdr-phone{display:none}
+    .mobile-nav{
+      position:fixed;inset:74px 0 auto;z-index:55;background:var(--bg);
+      border-bottom:1px solid var(--line);padding:14px var(--pad) 26px;
+      display:block;transform:translateY(-130%);transition:transform .3s ease;
+    }
+    body.nav-open .mobile-nav{transform:none}
+    .mobile-nav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:18px;font-weight:700}
+    .mobile-nav .btn{margin-top:16px}
+    .hero-grid,.prod-grid,.lead-grid,.cases-grid{grid-template-columns:1fr}
+    .sec-head{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .hero-media img{aspect-ratio:16/11}
+  }
+  @media (max-width:720px){
+    body{padding-bottom:74px}
+    .bars{display:flex}
+    .svc-row{grid-template-columns:44px 1fr;gap:8px 14px;padding:22px 2px}
+    .svc-row p{grid-column:2}
+    .steps{grid-template-columns:1fr}
+    .hero h1{font-size:clamp(30px,9.4vw,44px)}
+    .facts{gap:14px 22px}
+    .btn{min-height:52px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hdr">
+    <a class="logo" href="#top" aria-label="StandART — на главную">Stand<span>ART</span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#production">Производство</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#process">Как работаем</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="hdr-actions">
+      <a class="hdr-phone" data-phone-text href="#">—</a>
+      <a class="btn" href="#lead">Рассчитать проект</a>
+      <button class="burger" aria-label="Меню" aria-expanded="false"><i></i></button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#services">Услуги</a>
+    <a href="#production">Производство</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#process">Как работаем</a>
+    <a href="#contacts">Контакты</a>
+    <a class="btn btn--block" href="#lead">Рассчитать проект</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">StandART <b>·</b> Москва и МО</div>
+        <h1>Производим то, что <em>нельзя купить готовым</em></h1>
+        <p class="lead">Выставочные стенды, декорации, фотозоны, бренд-зоны и арт-объекты любой сложности. Собственное производство: печать, ЧПУ, сварка, 3D. От эскиза до монтажа на площадке — одной командой.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#lead">Рассчитать проект</a>
+          <a class="btn btn--ghost" data-wa-link href="#" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>Собственное производство</b><span>Москва и Московская область</span></div>
+          <div class="fact"><b>Полный цикл</b><span>проект → производство → монтаж</span></div>
+          <div class="fact"><b>Нестандартные конструкции</b><span>то, что не берут другие</span></div>
+        </div>
+      </div>
+      <div class="hero-media rv">
+        <img src="assets/cnc_photo_cover.jpg" alt="Производство StandART: изготовление конструкций на собственном участке" width="1200" height="1500" fetchpriority="high">
+        <span class="hero-tag">Свои цеха</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Услуги</div>
+          <h2>Что мы делаем</h2>
+        </div>
+        <p>Берём проект целиком или отдельный этап: от расчёта и эскиза до монтажа и демонтажа на площадке.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-row rv">
+          <div class="num">01</div>
+          <h3>Выставочные стенды</h3>
+          <p>Застройка от 6 до 200 м² под ключ: дизайн-проект, конструктив, брендирование, электрика, монтаж в день заезда и демонтаж после выставки.
+            <span class="tag">MITEX · Экспоцентр · Крокус</span></p>
+        </div>
+        <div class="svc-row rv">
+          <div class="num">02</div>
+          <h3>Декорации и фотозоны</h3>
+          <p>Объёмные декорации, арки, зоны для фото и мероприятий: концерты, корпоративы, фестивали, городские праздники.</p>
+        </div>
+        <div class="svc-row rv">
+          <div class="num">03</div>
+          <h3>Арт-объекты и инсталляции</h3>
+          <p>Скульптуры, гигантские предметы, световые и кинетические конструкции. Инженерный расчёт, каркас, покраска, монтаж.</p>
+        </div>
+        <div class="svc-row rv">
+          <div class="num">04</div>
+          <h3>Бренд-зоны и витрины</h3>
+          <p>Торговые зоны, витрины, шоурумы, пресс-волы, зоны активаций с интеграцией печати, света и мебели.</p>
+        </div>
+        <div class="svc-row rv">
+          <div class="num">05</div>
+          <h3>Сцена и сценические элементы</h3>
+          <p>Сценические конструкции, задники, кулисы, порталы, бекстейдж-зоны. Сборка и монтаж на объекте.</p>
+        </div>
+        <div class="svc-row rv">
+          <div class="num">06</div>
+          <h3>Печать и наружная реклама</h3>
+          <p>Широкоформатная печать, плоттерная резка, вывески, объёмные буквы, оклейка, брендирование транспорта и оборудования.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTION -->
+  <section class="prod" id="production">
+    <div class="wrap prod-grid">
+      <div class="rv"><img src="assets/cnc_table_cover.jpg" alt="ЧПУ-фрезеровка на производстве StandART" loading="lazy" width="1200" height="800"></div>
+      <div>
+        <div class="eyebrow">Производство</div>
+        <h2>Свой цех вместо посредников</h2>
+        <p>Мы не перепродаём чужую работу: конструкции делаются у нас, поэтому мы держим срок, материал и качество. Можем показать производство и провести по этапам изготовления вашего проекта.</p>
+        <div class="tech">
+          <span>ЧПУ-фрезеровка</span>
+          <span>Широкоформатная печать</span>
+          <span>Сварка металлокаркаса</span>
+          <span>3D-производство</span>
+          <span>Плоттерная резка</span>
+          <span>Малярный участок</span>
+          <span>Сборка</span>
+          <span>Логистика и монтаж</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Кейсы</div>
+          <h2>Уже смонтировано</h2>
+        </div>
+        <p>Фотографии — с наших объектов. Ничего не рисовали в графическом редакторе: это готовые конструкции.</p>
+      </div>
+      <div class="cases-grid">
+        <article class="case rv">
+          <img src="assets/test_edit.jpg" alt="Кейс: проект для ЦСКА Арена, шоу «Дискотека 90-х»" loading="lazy" width="1200" height="900">
+          <div class="case-body">
+            <h3>ЦСКА Арена × Дискотека 90-х</h3>
+            <p>Оформление сцены и зон мероприятия: объёмные элементы, брендированные поверхности, монтаж на действующей площадке в сжатые сроки.</p>
+            <div class="case-meta"><span>Сцена</span><span>Декорации</span><span>Монтаж</span></div>
+          </div>
+        </article>
+        <article class="case rv">
+          <img src="assets/cnc_photo_cover2.jpg" alt="Кейс: инсталляция «14 гигантских яблок», Коломенское" loading="lazy" width="1200" height="900">
+          <div class="case-body">
+            <h3>«14 гигантских яблок», Коломенское</h3>
+            <p>Серия крупногабаритных арт-объектов для городской площадки: каркас, формовка, покраска под открытым небом, установка и закрепление.</p>
+            <div class="case-meta"><span>Арт-объекты</span><span>Городская площадка</span><span>14 шт.</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Процесс</div>
+          <h2>Как мы работаем</h2>
+        </div>
+        <p>Прозрачно и по шагам: вы всегда знаете, на каком этапе проект и что нужно от вас.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv"><b>ШАГ 01</b><h3>Заявка и бриф</h3><p>Обсуждаем задачу, площадку, размеры и сроки. Отвечаем в течение рабочего дня.</p></div>
+        <div class="step rv"><b>ШАГ 02</b><h3>Расчёт и эскиз</h3><p>Готовим решение и смету по вашей площади. Одна цифра — без «уточним потом».</p></div>
+        <div class="step rv"><b>ШАГ 03</b><h3>Производство</h3><p>Изготовление на своём участке с фотоотчётом по готовности и без сюрпризов.</p></div>
+        <div class="step rv"><b>ШАГ 04</b><h3>Монтаж и сдача</h3><p>Привозим, собираем и сдаём объект. Демонтаж и хранение — по договорённости.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD -->
+  <section class="lead" id="lead">
+    <div class="wrap lead-grid">
+      <div>
+        <div class="eyebrow">Заявка</div>
+        <h2>Считаем ваш проект</h2>
+        <p class="lead-sub">Опишите задачу — площадку, размеры, сроки. Вернёмся с решением и стоимостью. Расчёт бесплатный.</p>
+        <ul class="lead-list">
+          <li><b>01</b> <span>Ответ в течение рабочего дня</span></li>
+          <li><b>02</b> <span>Смета по вашим размерам, без «примерных» цен</span></li>
+          <li><b>03</b> <span>Можно прислать фото площадки и референсы</span></li>
+        </ul>
+      </div>
+      <form id="leadForm" novalidate>
+        <div class="form-ok" id="formOk">Спасибо! Заявка собрана — сейчас откроется мессенджер, отправьте сообщение, и мы вернёмся с расчётом.</div>
+        <div class="field">
+          <label for="fName">Как вас зовут</label>
+          <input id="fName" name="name" type="text" autocomplete="name" required>
+          <div class="err">Укажите имя</div>
+        </div>
+        <div class="field">
+          <label for="fContact">Телефон или Telegram</label>
+          <input id="fContact" name="contact" type="text" inputmode="tel" autocomplete="tel" required>
+          <div class="err">Нужен телефон или ник в Telegram</div>
+        </div>
+        <div class="field">
+          <label for="fTask">Что нужно сделать</label>
+          <textarea id="fTask" name="task" placeholder="Например: стенд 6×3 м на MITEX, заезд за день до открытия"></textarea>
+        </div>
+        <label class="consent">
+          <input id="fConsent" type="checkbox" required>
+          <span>Согласен на обработку контактов для ответа по заявке</span>
+        </label>
+        <button class="btn btn--block" type="submit">Отправить заявку</button>
+        <p class="form-note">Если удобнее — напишите сразу: <a data-wa-link href="#" target="_blank" rel="noopener" style="color:var(--red);font-weight:700">WhatsApp</a> или <a data-tg-link href="#" target="_blank" rel="noopener" style="color:var(--red);font-weight:700">Telegram</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Контакты</div>
+          <h2>Свяжитесь с нами</h2>
+        </div>
+        <p>Работаем с объектами в Москве и области, выезжаем на площадку для замера.</p>
+      </div>
+      <div class="contacts-grid">
+        <div class="contact-card"><b>Телефон</b><a data-phone-text data-phone-link href="#">—</a></div>
+        <div class="contact-card"><b>WhatsApp</b><a data-wa-link href="#" target="_blank" rel="noopener">Написать</a></div>
+        <div class="contact-card"><b>Telegram</b><a data-tg-link href="#" target="_blank" rel="noopener">Написать</a></div>
+        <div class="contact-card"><b>E-mail</b><a data-mail-link href="#"><span data-mail-text>—</span></a></div>
+        <div class="contact-card"><b>Instagram</b><a href="https://instagram.com/stand_artproduction" target="_blank" rel="noopener">@stand_artproduction</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top">Stand<span>ART</span></a>
+    <div>Производство стендов, декораций и арт-объектов · Москва и МО</div>
+    <div>© <span id="year"></span> StandART</div>
+  </div>
+</footer>
+
+<div class="bars">
+  <a class="btn btn--ghost" data-phone-link href="#">Позвонить</a>
+  <a class="btn" data-wa-link href="#" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"StandART","description":"Рекламно-производственная компания: выставочные стенды, декорации, арт-объекты, бренд-зоны. Собственное производство.","areaServed":["Москва","Московская область"],"address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU"},"sameAs":["https://instagram.com/stand_artproduction"]}
+</script>
+
+<script>
+/* ============================================================
+   КОНТАКТЫ — единственное место, где меняются данные.
+   Подставь реальные значения (без пробелов и скобок в ссылках).
+   ============================================================ */
+const CONTACT = {
+  phoneText: "+7 (000) 000-00-00",   // как показывать на странице
+  phone:     "+70000000000",         // для ссылки tel:
+  whatsapp:  "70000000000",          // номер для wa.me
+  telegram:  "stand_artproduction",  // ник без @ для t.me
+  email:     "info@standart-production.ru"
+};
+const waText = encodeURIComponent("Здравствуйте! Пишу с сайта StandART — нужен расчёт проекта.");
+
+(function(){
+  const set = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+
+  set("[data-phone-text]", el => el.textContent = CONTACT.phoneText);
+  set("[data-phone-link]", el => el.href = "tel:" + CONTACT.phone);
+  set("[data-wa-link]",    el => el.href = "https://wa.me/" + CONTACT.whatsapp + "?text=" + waText);
+  set("[data-tg-link]",    el => el.href = "https://t.me/" + CONTACT.telegram);
+  set("[data-mail-link]",  el => el.href = "mailto:" + CONTACT.email);
+  set("[data-mail-text]",  el => el.textContent = CONTACT.email);
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* меню на мобильном */
+  const burger = document.querySelector(".burger");
+  burger.addEventListener("click", () => {
+    const open = document.body.classList.toggle("nav-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll("#mobileNav a").forEach(a =>
+    a.addEventListener("click", () => {
+      document.body.classList.remove("nav-open");
+      burger.setAttribute("aria-expanded", "false");
+    })
+  );
+
+  /* появление блоков при скролле */
+  const items = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+    items.forEach(el => io.observe(el));
+  } else items.forEach(el => el.classList.add("in"));
+
+  /* форма: проверка + отправка в мессенджер (бэкенда нет) */
+  const form = document.getElementById("leadForm");
+  const mark = (input, bad) => input.closest(".field").classList.toggle("bad", bad);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = form.name, contact = form.contact, consent = document.getElementById("fConsent");
+    const bad = [];
+    if (!name.value.trim() || name.value.trim().length < 2) { mark(name, true); bad.push(name); } else mark(name, false);
+    if (!contact.value.trim() || contact.value.trim().length < 5) { mark(contact, true); bad.push(contact); } else mark(contact, false);
+    if (bad.length) { bad[0].focus(); return; }
+    if (!consent.checked) { consent.focus(); return; }
+
+    form.classList.add("sent");
+    const msg = encodeURIComponent(
+      "Заявка с сайта StandART\n" +
+      "Имя: " + name.value.trim() + "\n" +
+      "Контакт: " + contact.value.trim() + "\n" +
+      "Задача: " + (form.task.value.trim() || "—")
+    );
+    window.open("https://wa.me/" + CONTACT.whatsapp + "?text=" + msg, "_blank", "noopener");
+  });
+  ["name", "contact"].forEach(n => form[n].addEventListener("input", () => mark(form[n], false)));
+})();
+</script>
+</body>
+</html>
