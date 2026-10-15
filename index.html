@@ -28,10 +28,11 @@
     --radius:14px;
     --pad:clamp(18px,4.2vw,64px);
     --maxw:1240px;
+    color-scheme:dark;
     --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
   }
   *,*::before,*::after{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(225,21,27,.24);touch-action:manipulation}
   body{
     margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
     font-size:16px;line-height:1.55;font-weight:400;overflow-x:hidden;
@@ -193,7 +194,7 @@
     color:#fff;font-family:inherit;font-size:16px;padding:15px 16px;min-height:52px;
   }
   .field textarea{min-height:104px;resize:vertical}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(225,21,27,.26)}
   .field.bad input,.field.bad textarea{border-color:var(--red);background:#160c0d}
   .err{display:none;color:var(--red-soft);font-size:12.5px;margin-top:7px}
   .field.bad .err{display:block}
@@ -224,6 +225,9 @@
   /* ---------- reveal ---------- */
   .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
   .rv.in{opacity:1;transform:none}
+  section[id],main[id]{scroll-margin-top:92px}
+  .skip{position:absolute;left:-9999px;top:6px;z-index:120;padding:12px 18px;background:var(--red);color:#fff;border-radius:10px;font-weight:700;text-decoration:none}
+  .skip:focus-visible{left:16px;outline:2px solid #fff;outline-offset:2px}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .rv{opacity:1;transform:none;transition:none}
@@ -261,6 +265,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#top">Перейти к содержанию</a>
 
 <header>
   <div class="wrap hdr">
@@ -456,7 +461,7 @@
         </ul>
       </div>
       <form id="leadForm" novalidate>
-        <div class="form-ok" id="formOk">Спасибо! Заявка собрана — сейчас откроется мессенджер, отправьте сообщение, и мы вернёмся с расчётом.</div>
+        <div class="form-ok" id="formOk" role="status" aria-live="polite">Спасибо! Заявка собрана — сейчас откроется мессенджер, отправьте сообщение, и мы вернёмся с расчётом.</div>
         <div class="field">
           <label for="fName">Как вас зовут</label>
           <input id="fName" name="name" type="text" autocomplete="name" required>
